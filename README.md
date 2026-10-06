@@ -30,10 +30,10 @@ The regression model used the following specification:
 
 **Result:** The fitted model produced an **R² of 0.008**.
 
-This means the model explains less than 1% of the variation in weekly sales, indicating that CPI and the binary holiday flag alone provide very limited explanatory power for this dataset. Predictive performance was not evaluated on unseen data, as the focus was on in-sample statistical inference rather than out-of-sample forecasting.
+This means the model explains less than 1% of the variation in weekly sales, indicating that CPI and the binary holiday flag alone provide very limited explanatory power for this dataset. The notebook reports only in-sample model fit and does not evaluate predictive performance on unseen data.
 
 ## Key Takeaways
-- **Hypothesis Testing:** The t-test (p-value 0.087) did not provide sufficient evidence to confidently claim that the presence of a holiday significantly impacts the weekly sales figures globally across all stores in this dataset.
+- **Hypothesis Testing:** The t-test (p-value 0.087) did not provide sufficient evidence to conclude that weekly sales differ significantly between holiday and non-holiday periods in this pooled dataset.
 - **Model Fit Interpretation:** The extremely low R² demonstrates the limitations of a simplistic model. A weak regression result is valuable evidence indicating that the selected predictors are insufficient to fully capture the complexity of retail sales.
 - **Fundamentals:** This project demonstrates practical application of introductory statistical analysis and hypothesis testing in Python.
 
