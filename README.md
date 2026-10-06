@@ -1,55 +1,51 @@
 ![Walmart](Walmart.jpg)
-# Regression Analysis on Walmart Sales: Analyzing the Impact of CPI and Holiday
-## Project: Statistics for Business
----
-## Introduction
+# Walmart Sales Statistical Analysis — CPI, Holidays, and Linear Regression
 
-Sales are vital for any business, and predicting them accurately is crucial. For a retail giant like Walmart in the US, understanding sales performance is not just important; it's necessary. Imagine having the ability to forecast daily product sales, taking into account economic conditions, holidays, and other influencing factors. This capability could be a game-changer, enabling companies to make smarter decisions and allocate resources more effectively.
+## Overview
+This is a legacy educational statistical analysis and regression project exploring a historical Walmart weekly sales dataset. The project investigates the relationships between macroeconomic indicators, holiday events, and store sales. The primary objective was to perform exploratory data analysis (EDA), hypothesis testing, and fit a basic multiple linear regression model to better understand what drives variations in weekly sales.
 
-In the ever-changing retail landscape, making well-informed decisions is the key to success. We were given an important task: to create a regression model that explores how specific variables - Consumer Price Index (CPI) and Holiday_Flag - affect Walmart's weekly sales, with the hope of achieving more precise sales predictions. This idea comes from noticing that sales go up a lot during holidays.
-## Objective
-
-Through this project, we aim to address important questions: Do these factors have a significant effect on sales? Can a model built around CPI and Holiday_Flag truly yield accurate sales predictions? With data from 45 Walmart stores, our main goal is to use statistical tests and develop a model to identify the effect of these variables. Our objectives are:
-
-1. Identify the relationships among variables.
-2. Conduct hypothesis testing to assess the impact of holidays on sales.
-3. Develop regression models to predict sales.
-
-With these objectives, we will be able to analyze and determine whether the model built with these variables can accurately predict the sales or not.
+## Questions Explored
+- Are weekly sales materially different during holiday periods compared to non-holiday periods?
+- How are the Consumer Price Index (CPI) and Holiday_Flag associated with Weekly_Sales?
+- How much variation in weekly sales does a simple regression specification explain?
 
 ## Dataset
-Walmart Dataset is a historical sales data that covers sales from February 5th 2010 to November 26th 2012, with following details:
+- **Size:** 6,435 rows and 8 columns
+- **Stores:** 45 unique Walmart stores
+- **Date Range:** February 5, 2010, through October 26, 2012
+- **Key Variables:** `Store`, `Date`, `Weekly_Sales` (Target), `Holiday_Flag`, `Temperature`, `Fuel_Price`, `CPI`, and `Unemployment`
+- **Source:** [Walmart Dataset on Kaggle](https://www.kaggle.com/datasets/yasserh/walmart-dataset)
 
-- Store: Store number or identifier.
-- Date: The date of recorded sales data.
-- Weekly_Sales: Sales figures for the specified store during a given week.
-- Holiday_Flag: A binary indicator, where 1 signifies a holiday week, and 0 represents a non-holiday week.
-- Temperature: The recorded temperature on the day of the sale.
-- Fuel_Price: The cost of fuel in the respective region during the week.
-- CPI: The current Consumer Price Index, providing insights into the cost of living.
-- Unemployment: The current unemployment rate in the region.
+## Analysis
+The notebook implements the following analysis workflow:
+- **Data Cleaning & Preprocessing:** Formatting dates and removing outliers using a 1.5 × IQR filter across multiple numeric columns (reducing the dataset from 6,435 to 5,923 observations).
+- **Exploratory Data Analysis (EDA):** Visualizing sales distributions, seasonal trends, and variable correlations.
+- **Hypothesis Testing:** Applying a Welch's two-sample t-test to evaluate the difference between holiday and non-holiday sales.
+- **Modeling:** Fitting an Ordinary Least Squares (OLS) regression using the `statsmodels` library.
 
-For further details, you can refer to the following link: [Walmart Dataset](https://www.kaggle.com/datasets/yasserh/walmart-dataset).
+## Regression Result
+The regression model used the following specification:
+
+`Weekly_Sales ~ CPI + Holiday_Flag`
+
+**Result:** The fitted model produced an **R² of 0.008**.
+
+This means the model explains less than 1% of the variation in weekly sales, indicating that CPI and the binary holiday flag alone provide very limited explanatory power for this dataset. Predictive performance was not evaluated on unseen data, as the focus was on in-sample statistical inference rather than out-of-sample forecasting.
+
+## Key Takeaways
+- **Hypothesis Testing:** The t-test (p-value 0.087) did not provide sufficient evidence to confidently claim that the presence of a holiday significantly impacts the weekly sales figures globally across all stores in this dataset.
+- **Model Fit Interpretation:** The extremely low R² demonstrates the limitations of a simplistic model. A weak regression result is valuable evidence indicating that the selected predictors are insufficient to fully capture the complexity of retail sales.
+- **Fundamentals:** This project demonstrates practical application of introductory statistical analysis and hypothesis testing in Python.
+
+## Limitations
+- **No Holdout Evaluation:** There is no time-based or random train/test split. The model is entirely an in-sample exploratory regression, not a validated predictive model.
+- **No Future Forecasting:** The project does not implement genuine out-of-sample future forecasting.
+- **Omitted Variables:** Important temporal structures (seasonality, trend) and store-level heterogeneity (differences between individual stores) were not modeled in the final regression specification.
+- **Environment Dependency:** The Jupyter notebook was originally authored for Google Colab and currently relies on a Colab-specific hardcoded file path (`/content/Walmart.csv`) to load the dataset.
 
 ## Resources
-**Google Colab** - [Walmart Regression Model.ipynb](https://colab.research.google.com/drive/14tVJZFwvJ3PwnEJwZx3u00WJjXwBN2Qy?usp=sharing)
+- **Google Colab Notebook:** [Walmart Regression Model.ipynb](https://colab.research.google.com/drive/14tVJZFwvJ3PwnEJwZx3u00WJjXwBN2Qy?usp=sharing)
+- **Medium Article:** [Regression Analysis on Walmart Sales](https://medium.com/@farizalfitraaa/regression-analysis-on-walmart-sales-analyzing-the-impact-of-cpi-and-holiday-d68586a728b7)
 
-This Google Colab notebook contains the complete implementation of the regression analysis for Walmart sales. It includes detailed code, visualizations, and explanations. You can run and edit the notebook directly in your browser, making it easy to explore the analysis.
-
-**Medium Article** - [Regression Analysis on Walmart Sales: Analyzing the Impact of CPI and Holiday](https://medium.com/@farizalfitraaa/regression-analysis-on-walmart-sales-analyzing-the-impact-of-cpi-and-holiday-d68586a728b7)
-
-In this comprehensive Medium article, we delve into the intricacies of analyzing Walmart sales data. We provide in-depth insights into the seasonal trends, variable correlations, and the impact of holidays on sales. Additionally, the article presents the regression models and their implications for accurate sales predictions. Explore the article for a detailed overview of our project findings and analysis.
-
-## Closing
-
-Due my limited knowledge regarding regression models, I hope to dedicate more time to learning and refining my skills. This way, I aim to build a more accurate predictive model in the future.
-
-Thank you very much for your attention, and I greatly appreciate any advice or input from all of you.
-
-Let's connect:
-
-- Email: farizalfitraaa@gmail.com
-- Linkedin: https://www.linkedin.com/in/farizalfitra/
-- Github: https://github.com/alfitraaa/Walmart_Regression_Model
-- Portfolio: https://alfitraaa.github.io/FarizAlfitra.github.io/
-- Medium: https://medium.com/@farizalfitraaa/regression-analysis-on-walmart-sales-analyzing-the-impact-of-cpi-and-holiday-d68586a728b7
+## Project Context
+This is a legacy educational project focusing on the fundamentals of exploratory data analysis, hypothesis testing, and interpreting linear regression outputs. It serves as a foundational exercise in statistical programming rather than a production-grade forecasting system. The findings accurately reflect the limitations of basic models when applied to complex, multidimensional retail data.
